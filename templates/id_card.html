@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>ID Card Generated.</h1>
+    </header>
+    <main>
+        <section>
+            {% if alert_message %}
+                <div class="alert">
+                    <p>{{ alert_message }}</p>
+                </div>
+            {% endif %}
+            <b><pre>{{ id_card }}</pre></b>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 ID Card Generator</p>
+    </footer>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>
